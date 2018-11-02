@@ -1,3 +1,3 @@
-# Spool Project
+# Sys Admin Projects
 
-This is a program to manage the usage of a printer
+This repo has all the programs develop developed in the SysAdmin subject
