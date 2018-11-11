@@ -1,2 +1,3 @@
 USER LEFT_TO_PRINT
 klynger 10
+ronaldo 0

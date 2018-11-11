@@ -1,3 +1,5 @@
+#!/bin/bash
+
 usersFilePath=$(grep "users_file_path" .config | awk '{ print $2 }')
 loggedUser=$(whoami)
 result=$(awk '{ if (NR!=1) print $1 }' $usersFilePath | grep $loggedUser)
