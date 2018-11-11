@@ -13,7 +13,18 @@ then
 fi
 
 documentPages=$(bash total-pages.sh $filePath)
- 
+
+if [ -z $totalPagesToPrint ]
+then
+	totalPagesToPrint=$documentPages 
+fi
+
+if [ $totalPagesToPrint -eq 0 ]
+then
+	echo "You need to print at least one page!"
+	exit 1
+fi
+
 if [ $totalPagesToPrint -gt $documentPages ]
 then
 	echo "The number of pages selected to print is larger than the number of pages in the document, printing $documentPages pages"
