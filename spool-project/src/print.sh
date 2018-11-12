@@ -5,11 +5,10 @@ totalPagesToPrint=$2
 
 result=$(bash can-i-print.sh)
 
-if [ "$result" = "You are not registered" -o "$result" = "You already printed all your quota for this month" ]
+if [ "$result" = "You are not registered" -o "$result" = "You already printed all your quota for this month" -o "$result" = "You can't print anything this month" ]
 then
 	echo "$result"
 	exit 1
-
 fi
 
 documentPages=$(bash total-pages.sh $filePath)
@@ -31,16 +30,16 @@ then
 	totalPagesToPrint=$documentPages
 fi
 
-currentPath=$(pwd)
-usersFilePath=$(grep "users_file_path" "$currentPath/.config" | awk '{ print $2 }')
+quotaFilePath=$(grep "quota_file_path" .config | awk '{ print $2 }')
+quotaFileName="`date +%y-%m`.txt"
 
 loggedUser=$(whoami)
-leftPages=$(grep $loggedUser "$currentPath/$usersFilePath" | awk '{ print $2 }')
-
+leftPages=$(grep $loggedUser $quotaFilePath/$quotaFileName | awk '{ print $2 }')
 userLine="$loggedUser `expr $leftPages - $totalPagesToPrint`"
-restOfFile=$(grep -Ev "^$loggedUser|^$" $usersFilePath)
-echo "$restOfFile" > current-month.txt
-echo "$userLine" >> current-month.txt
+echo "here"
+restOfFile=$(grep -Ev "^$loggedUser|^$" $quotaFilePath/$quotaFileName)
+echo "$restOfFile" > $quotaFilePath/$quotaFileName
+echo "$userLine" >> $quotaFilePath/$quotaFileName
 
 bash log.sh $filePath $totalPagesToPrint
 
