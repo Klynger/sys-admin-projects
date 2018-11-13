@@ -13,7 +13,7 @@ fi
 
 quotaFilePath=$(grep "quota_file_path" .config | awk '{ print $2 }')
 quotaFileName="`date +%y-%m`.txt"
-touch $quotaFilePath/$quotaFileName
+touch "$quotaFilePath/$quotaFileName"
 
 maxQuota=$(grep "max_quota" .config | awk '{ print $2 }')
 leftToPrint=$(grep "$loggedUser" $quotaFilePath/$quotaFileName | awk '{ print $2 }')
