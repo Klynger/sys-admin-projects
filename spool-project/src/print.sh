@@ -36,7 +36,6 @@ quotaFileName="`date +%y-%m`.txt"
 loggedUser=$(whoami)
 leftPages=$(grep $loggedUser $quotaFilePath/$quotaFileName | awk '{ print $2 }')
 userLine="$loggedUser `expr $leftPages - $totalPagesToPrint`"
-echo "here"
 restOfFile=$(grep -Ev "^$loggedUser|^$" $quotaFilePath/$quotaFileName)
 echo "$restOfFile" > $quotaFilePath/$quotaFileName
 echo "$userLine" >> $quotaFilePath/$quotaFileName
