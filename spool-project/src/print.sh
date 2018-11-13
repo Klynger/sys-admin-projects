@@ -43,3 +43,4 @@ echo "$userLine" >> $quotaFilePath/$quotaFileName
 bash log.sh $filePath $totalPagesToPrint
 
 echo "Printing $totalPagesToPrint of $documentPages pages of Document $filePath, User: $loggedUser"
+# Here would be the place where the lp command would be used, soon after to validate the user's print request.
