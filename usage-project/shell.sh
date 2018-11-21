@@ -1,10 +1,9 @@
 #!/bin/bash
 
 while [ 1 ]; do
-	
 	read entry
 	
-	if [ "$entry" == "exit" ]; then
+	if [ "$entry" == "exit" ] || [ -z $(which $entry) ]; then
 	       exit
        	fi
 
@@ -13,8 +12,4 @@ while [ 1 ]; do
 	logLine="`whoami`@`date +%y/%m/%d-%H:%M:%S`@$timeOutput@\"$entry\""
 	echo $logLine >> log
 	echo -ne "[$(whoami)]@:$(pwd)$ "
-
 done
-
-
-	
