@@ -12,7 +12,7 @@ while [ 1 ]; do
 	timeOutput=$(cat /tmp/usage-time)	
 	logLine="`whoami`@`date +%y/%m/%d-%H:%M:%S`@$timeOutput@\"$entry\""
 	echo $logLine >> log
-	echo "$"
+	echo -ne "[$(whoami)]@:$(pwd)$ "
 
 done
 
