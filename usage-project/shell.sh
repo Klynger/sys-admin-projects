@@ -1,10 +1,9 @@
 #!/bin/bash
 
 while [ 1 ]; do
-	
 	read entry
 	
-	if [ "$entry" == "exit" ]; then
+	if [ "$entry" == "exit" ] || [ -z $(which $entry) ]; then
 	       exit
        	fi
 
@@ -12,9 +11,4 @@ while [ 1 ]; do
 	timeOutput=$(cat /tmp/usage-time)	
 	logLine="`whoami`@`date +%y/%m/%d-%H:%M:%S`@$timeOutput@\"$entry\""
 	echo $logLine >> log
-	echo "$"
-
 done
-
-
-	
