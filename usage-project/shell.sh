@@ -4,10 +4,12 @@ while [ 1 ]; do
 	
 	echo -ne "[$(whoami)]@:$(pwd)$ "
 	read entry
-	echo $entry > /tmp/usage-time-command
+	
 	if [ "$entry" == "exit" ]; then
 	       exit
-    fi
+       	fi
+	
+	echo $entry > /tmp/usage-time-command
 
 	pureCommand=$(awk '{ print $1 }' /tmp/usage-time-command)
 	if [ -z $(which $pureCommand) ]; then
