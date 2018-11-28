@@ -18,10 +18,9 @@ while [ 1 ]; do
 	fi
 
 	/usr/bin/time -f "%S\t%U" -o /tmp/usage-time bash -c "$entry"
-	timeOutput=$(cat /tmp/usage-time)	
+	timeOutput=$(cat /tmp/usage-time)
+	# USER @ DATE_TIME @ SYSTEM_USAGE USER_USAGE @ COMMAND
 	logLine="`whoami`@`date +%y/%m/%d-%H:%M:%S`@$timeOutput@\"$entry\""
 	logPathName=".log/`date +%y-%m`"
 	echo $logLine >> $logPathName
-	echo $logLine >> log
-
 done
