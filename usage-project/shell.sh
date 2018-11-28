@@ -21,6 +21,6 @@ while [ 1 ]; do
 	timeOutput=$(cat /tmp/usage-time)
 	# USER @ DATE_TIME @ SYSTEM_USAGE USER_USAGE @ COMMAND
 	logLine="`whoami`@`date +%y/%m/%d-%H:%M:%S`@$timeOutput@\"$entry\""
-	logPathName=".log/`date +%y-%m`"
+	logPathName=".logs/`date +%y-%m`"
 	echo $logLine >> $logPathName
 done
