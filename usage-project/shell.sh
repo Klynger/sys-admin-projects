@@ -20,6 +20,8 @@ while [ 1 ]; do
 	/usr/bin/time -f "%S\t%U" -o /tmp/usage-time bash -c "$entry"
 	timeOutput=$(cat /tmp/usage-time)	
 	logLine="`whoami`@`date +%y/%m/%d-%H:%M:%S`@$timeOutput@\"$entry\""
+	logPathName=".log/`date +%y-%m`"
+	echo $logLine >> $logPathName
 	echo $logLine >> log
 
 done
