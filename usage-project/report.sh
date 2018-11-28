@@ -3,15 +3,20 @@ monthOfReport=$2
 user=$3
 
 logFilePath=".log/$yearOfReport-$monthOfReport"
-totalUsageTime=$(awk -F@ '{
+totalSystemUsageTime=$(awk -F@ '{
     print $3
 }' $logFilePath | awk '{
-    systemUsage += $1;
-    userUsage += $2;
-} END { printf "%ss\t%ss", systemUsage, userUsage }')
+    systemUsage += $1
+} END { print systemUsage }')
 
-echo -e "USAGE IN SYSTEM MODE\tUSAGE IN USER MODE"
-echo $totalUsageTime
+totalUserUsageTime=$(awk -F@ '{
+    print $3
+}' $logFilePath | awk '{
+    userUsage += $2;
+} END { print userUsage }')
+
+echo "USAGE IN SYSTEM MODE $totalSystemUsageTime segs"
+echo "USAGE IN USER MODE $totalUserUsageTime segs"
 echo "---------------------------------------------"
 
 echo -e "COUNT\tCOMMAND"
@@ -19,4 +24,6 @@ awk -F@ '{
     print $4
 }' $logFilePath | awk '{
     printf "%s\n", $1
-}' | awk -F\" '{ print $2 }' | sort | uniq -c
+}' | awk -F\" '{ print $2 }' | sort | uniq -c | awk '{
+    print $1 "\t" $2
+}'
