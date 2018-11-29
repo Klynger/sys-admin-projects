@@ -2,7 +2,7 @@ yearOfReport=$1
 monthOfReport=$2
 user=$3
 
-logFilePath=".log/$yearOfReport-$monthOfReport"
+logFilePath=".logs/$yearOfReport-$monthOfReport"
 totalSystemUsageTime=$(awk -F@ '{
     print $3
 }' $logFilePath | awk '{
